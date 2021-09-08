@@ -30,7 +30,7 @@ class App extends GetView<AppController> {
             break;
         }
         return Container();
-      }),
+      }), 
       bottomNavigationBar: Obx(
         () => BottomNavigationBar(
           onTap: controller.changeCurrentIndex,
