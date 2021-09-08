@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "86289087289",
+    "project_id": "musical-1-37e2e",
+    "storage_bucket": "musical-1-37e2e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86289087289:android:961341f0e7703ba13a06e8",
+        "android_client_info": {
+          "package_name": "com.example.musical_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86289087289-q15ob4bnfejilrjghqajpis5aep6ejde.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.musical_app",
+            "certificate_hash": "493e3e6975a20683254083be26362beab4fa722e"
+          }
+        },
+        {
+          "client_id": "86289087289-12je6osmlq97q1dniq16s36jho5t6uv1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCe8yIP82ezpIempVfh631Q4_JgdcJ1fV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86289087289-12je6osmlq97q1dniq16s36jho5t6uv1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "86289087289-orfmm1icq05or6cn1p4v849n9nktskrb.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.musicalapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
