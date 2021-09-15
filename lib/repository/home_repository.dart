@@ -293,13 +293,14 @@ class HomeRepository extends GetConnect {
         if (jsonData["dbs"] != null && jsonData["dbs"].length > 0) {
           Map<String, dynamic?> data = jsonData["dbs"];
           // return DB.fromJson(jsonData['dbs']);
-          return DB.fromJson(data['db']);
+          return DB.fromJson(data['db']);          
         }
       }
     } catch (e) {
       print(e);
     }
   }
+
 
   Future<DbsResult?> searchLoad(String searchKeyword) async {
     try {

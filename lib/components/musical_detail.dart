@@ -144,28 +144,11 @@ class MusicalDetail extends GetView<DetailController> {
   Widget _mainDetailText() {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
-      child: SizedBox(
+      child: Container(
         width: Get.width,
-        height: 500,
-        child: ListView.builder(
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            if (controller.dbResult.value.styurls != null) {
-              return Container(
-                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                width: Get.width,
-                child: Image.network(
-                  controller.dbResult.value.poster ?? muUrl,
-                  fit: BoxFit.cover,
-                ),
-              );
-            } else {
-              return Container(
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child:
-                      Image.network(controller.dbResult.value.poster ?? muUrl));
-            }
-          },
+        child: Image.network(
+          controller.dbResult.value.styurls?.styurl ?? muUrl,
+          fit: BoxFit.cover,
         ),
       ),
     );

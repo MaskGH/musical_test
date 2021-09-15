@@ -36,7 +36,7 @@ class DB {
   String? prfstate;
   String? openrun;
   String? dtguidance;
-  List<Styurls>? styurls;
+  Styurls? styurls;
   String? mt10id;
   String? prfcrew;
   String? fcltynm;
@@ -81,9 +81,8 @@ class DB {
         dtguidance: json["dtguidance"],
         mt10id: json['mt10id'],
         prfcrew: json['prfcrew'],
-        fcltynm: json['fcltynm'],
-        // styurls:
-        //     List<Styurls>.from(json["styurls"].map((x) => Styurls.fromJson(x))),
+        fcltynm: json['fcltynm'],        
+        styurls: Styurls.fromJson(json["styurls"]),
       );
 
 // factory DbsResult.fromJson(Map<String, dynamic> json) =>
@@ -108,25 +107,28 @@ class DB {
         "mt10id": mt10id,
         "prfcrew": prfcrew,
         "fcltynm": fcltynm,
-        // "styurls": List<dynamic>.from(styurls!.map((e) => e.toString())),
+        "styurls": styurls!.toJson(),
       };
 }
-// factory DbsResult.fromJson(Map<String, dynamic> json) =>
-//       DbsResult(db: List<Db>.from(json["db"].map((x) => Db.fromJson(x))));
-
 //   Map<String, dynamic> toJson() => {
 //         "db": List<dynamic>.from(db!.map((e) => e.toJson())),
 //       };
 
 class Styurls {
-  String? styurl;
+  dynamic styurl;
+    Styurls({
+        this.styurl,
+    });
+    
 
-  Styurls({this.styurl});
-
-  factory Styurls.fromJson(Map<String, dynamic> json) => Styurls(
+    factory Styurls.fromJson(Map<String, dynamic> json) => Styurls(
         styurl: json['styurl'],
-      );
-  Map<String, dynamic> toJson() => {
-        "styurl": styurl,
-      };
+        // List<String>.from(json["styurl"].map((x) => x))
+    );
+
+    Map<String, dynamic> toJson() => {
+        'styurl': styurl,
+        // List<dynamic>.from(styurl!.map((e) => e).toList())
+    };
 }
+
