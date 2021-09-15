@@ -3,9 +3,13 @@ import 'package:get/get.dart';
 import 'package:musical_app/components/musical_detail.dart';
 import 'package:musical_app/model/db.dart';
 
-class SearchResultPage extends StatelessWidget {
-  Db? db;
-  SearchResultPage({Key? key, this.db}) : super(key: key);
+class LibararyWidget extends StatelessWidget {
+  Boxof? boxof;
+
+  LibararyWidget({
+    Key? key,
+    this.boxof,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,7 @@ class SearchResultPage extends StatelessWidget {
           Container(
             width: Get.width * 0.3,
             child: Image.network(
-              db!.poster ?? muUrl,
+              "http://www.kopis.or.kr${boxof!.poster ?? muUrl}",
               fit: BoxFit.cover,
             ),
           ),
@@ -26,22 +30,15 @@ class SearchResultPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  db!.prfnm ?? "해당 정보 없음",
+                  boxof!.prfnm ?? "해당 정보 없음",
                   style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 20),
+                      color: Colors.black, fontWeight: FontWeight.w700,fontSize: 20),
                   maxLines: 2,
                 ),
                 Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(db!.prfpdfrom ?? "해당 정보 없음",
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w500)),
-                    Text(db!.fcltynm ?? "해당 정보 없음",
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w500)),
+                    Text(boxof!.prfpd ?? "해당 정보 없음"),
+                    Text(boxof!.prfplcnm ?? "해당 정보 없음"),
                   ],
                 ),
               ],
@@ -52,5 +49,4 @@ class SearchResultPage extends StatelessWidget {
     );
   }
 }
-
 

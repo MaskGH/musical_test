@@ -1,5 +1,7 @@
 import 'package:get/instance_manager.dart';
 import 'package:musical_app/controller/app_controller.dart';
+import 'package:musical_app/controller/library_controller.dart';
+import 'package:musical_app/controller/person_controlller.dart';
 import 'package:musical_app/controller/search_controller.dart';
 import 'package:musical_app/repository/home_repository.dart';
 
@@ -9,5 +11,7 @@ class InitBinding implements Bindings {
     Get.put(AppController());
     Get.put(HomeRepository(), permanent: true);
     Get.put(SearchController());
+    Get.put(PersonController());
+    Get.put(LibraryController());
   }
 }

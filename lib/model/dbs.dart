@@ -41,26 +41,27 @@ class DB {
   String? prfcrew;
   String? fcltynm;
 
-  DB(
-      {this.mt20id,
-      this.prfnm,
-      this.prfpdfrom,
-      this.prfpdto,
-      this.prfcast,
-      this.prfruntime,
-      this.prfage,
-      this.entrpsnm,
-      this.pcseguidance,
-      this.poster,
-      this.sty,
-      this.genrenm,
-      this.prfstate,
-      this.openrun,
-      this.dtguidance,
-      this.styurls,
-      this.mt10id,
-      this.prfcrew,
-      this.fcltynm});
+  DB({
+    this.mt20id,
+    this.prfnm,
+    this.prfpdfrom,
+    this.prfpdto,
+    this.prfcast,
+    this.prfruntime,
+    this.prfage,
+    this.entrpsnm,
+    this.pcseguidance,
+    this.poster,
+    this.sty,
+    this.genrenm,
+    this.prfstate,
+    this.openrun,
+    this.dtguidance,
+    this.styurls,
+    this.mt10id,
+    this.prfcrew,
+    this.fcltynm,
+  });
 
   factory DB.fromJson(Map<String, dynamic> json) => DB(
         mt20id: json["mt20id"],
@@ -82,8 +83,11 @@ class DB {
         prfcrew: json['prfcrew'],
         fcltynm: json['fcltynm'],
         // styurls:
-        //     List<Styurls>.from(json["styurl"].map((x) => Styurls.fromJson(x))),
+        //     List<Styurls>.from(json["styurls"].map((x) => Styurls.fromJson(x))),
       );
+
+// factory DbsResult.fromJson(Map<String, dynamic> json) =>
+//       DbsResult(db: List<Db>.from(json["db"].map((x) => Db.fromJson(x))));
 
   Map<String, dynamic> toJson() => {
         "mt20id": mt20id,
@@ -104,7 +108,7 @@ class DB {
         "mt10id": mt10id,
         "prfcrew": prfcrew,
         "fcltynm": fcltynm,
-        "styurls": List<dynamic>.from(styurls!.map((e) => e.toJson())),
+        // "styurls": List<dynamic>.from(styurls!.map((e) => e.toString())),
       };
 }
 // factory DbsResult.fromJson(Map<String, dynamic> json) =>
@@ -120,8 +124,9 @@ class Styurls {
   Styurls({this.styurl});
 
   factory Styurls.fromJson(Map<String, dynamic> json) => Styurls(
-        styurl: json["styurl"],
+        styurl: json['styurl'],
       );
-  Map<String, dynamic> toJson() => {"styurl": styurl};
-
+  Map<String, dynamic> toJson() => {
+        "styurl": styurl,
+      };
 }

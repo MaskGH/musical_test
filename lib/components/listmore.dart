@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:musical_app/components/musical_detail.dart';
 import 'package:musical_app/controller/home_controller.dart';
@@ -18,36 +17,37 @@ class ListMore extends StatelessWidget {
           () => CustomScrollView(
             slivers: [
               SliverAppBar(
-                title: Text("뮤지컬"),
+                title: Text("뮤지컬",style: TextStyle(color: Colors.black),),
                 floating: true,
-                backgroundColor: Colors.yellow.shade700,
+                backgroundColor: Colors.white,
                 leading: IconButton(
                   onPressed: () {
                     Get.back();
                   },
                   icon: Icon(
                     Ionicons.arrow_back_outline,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
               ),
               SliverList(
                 delegate: SliverChildBuilderDelegate((context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {
-                        Get.toNamed(
-                            "/MusicalDetail/${homeController.dbsListResult.value.db![index].mt20id}");
-                      },
+                  return GestureDetector(
+                    onTap: () {
+                      Get.toNamed(
+                          "/MusicalDetail/${homeController.dbsListResult.value.db![index].mt20id}");
+                    },
+                    child: Card(
+                      elevation: 5,
+                      shadowColor: Colors.grey.withOpacity(0.5),
+                      semanticContainer: true,
+                      margin: EdgeInsets.only(left: 10,right: 10,top: 5,bottom: 5),
                       child: Container(
                         width: Get.width,
-                        height: 100,
                         child: Row(
                           children: [
                             Container(
                               width: Get.width * 0.3,
-                              height: 100,
                               child: Image.network(
                                 homeController.dbsListResult.value.db![index]
                                         .poster ??
@@ -59,30 +59,37 @@ class ListMore extends StatelessWidget {
                               child: Column(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
                                     homeController.dbsListResult.value
                                             .db![index].prfnm ??
-                                        "제목 정보 없음",
-                                    maxLines: 3,
+                                        "해당 정보 없음",
                                     style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18),
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(homeController.dbsListResult.value
-                                              .db![index].prfpdto ??
-                                          "날짜 정보 없음"),
-                                      Text(" 까지"),
-                                    ],
-                                  ),
-                                  Text(
-                                    homeController.dbsListResult.value
-                                            .db![index].fcltynm ??
-                                        "장소 정보 없음",
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 20),
                                     maxLines: 2,
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                          homeController.dbsListResult.value
+                                                  .db![index].prfpdfrom ??
+                                              "해당 정보 없음",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w500)),
+                                      Text(
+                                          homeController.dbsListResult.value
+                                                  .db![index].fcltynm ??
+                                              "해당 정보 없음",
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.w500)),
+                                    ],
                                   ),
                                 ],
                               ),

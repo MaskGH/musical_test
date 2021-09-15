@@ -6,7 +6,7 @@ import 'package:musical_app/repository/home_repository.dart';
 class DetailController extends GetxController {
   var mt20id = Get.parameters['mt20id'];
   // Db? db;
-  Rx<DB> dbResult = DB().obs;
+  Rx<DB> dbResult = DB().obs;  
   // DetailController({this.db});
 
   @override
@@ -17,8 +17,9 @@ class DetailController extends GetxController {
 
   void _detailLoad() async {
     DB? dbs = await HomeRepository.to.loadMusicalDetail(mt20id);
-    if (dbs != null && dbs.mt20id != null ) {
-      dbResult(dbs);      
+    if (dbs != null && dbs.mt20id != null) {
+      dbResult(dbs);
     }
   }
+
 }

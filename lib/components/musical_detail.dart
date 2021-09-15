@@ -7,14 +7,18 @@ import 'package:ionicons/ionicons.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:musical_app/components/admob.dart';
 import 'package:musical_app/controller/detail_controller.dart';
+import 'package:musical_app/controller/person_controlller.dart';
 
 const String muUrl =
     "http://t1.daumcdn.net/friends/prod/editor/dc8b3d02-a15a-4afa-a88b-989cf2a50476.jpg";
+
+const String muImage = "assets/image/404.png";
 
 class MusicalDetail extends GetView<DetailController> {
   MusicalDetail({
     Key? key,
   }) : super(key: key);
+  final PersonController personController = Get.put(PersonController());
 
   Widget _line() {
     return Container(
@@ -140,25 +144,46 @@ class MusicalDetail extends GetView<DetailController> {
   Widget _mainDetailText() {
     return Padding(
       padding: const EdgeInsets.only(top: 10, bottom: 10),
-      child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+      child: SizedBox(
         width: Get.width,
-        child: controller.dbResult.value.sty == null
-            ? Center(
-                child: Obx(
-                  () => Image.network(
-                    controller.dbResult.value.poster == null
-                        ? muUrl
-                        : controller.dbResult.value.poster!,
-                  ),
+        height: 500,
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemBuilder: (context, index) {
+            if (controller.dbResult.value.styurls != null) {
+              return Container(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                width: Get.width,
+                child: Image.network(
+                  controller.dbResult.value.poster ?? muUrl,
+                  fit: BoxFit.cover,
                 ),
-              )
-            : Text(controller.dbResult.value.sty == null
-                ? "줄거리 정보 없음 "
-                : controller.dbResult.value.sty!),
+              );
+            } else {
+              return Container(
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                  child:
+                      Image.network(controller.dbResult.value.poster ?? muUrl));
+            }
+          },
+        ),
       ),
     );
   }
+
+// controller.dbResult.value.sty == null
+//             ? Center(
+//                 child: Obx(
+//                   () => Image.network(
+//                     controller.dbResult.value.poster == null
+//                         ? muUrl
+//                         : controller.dbResult.value.poster!,
+//                   ),
+//                 ),
+//               )
+//             : Text(controller.dbResult.value.sty == null
+//                 ? "줄거리 정보 없음 "
+//                 : controller.dbResult.value.sty!),
 
   Widget _creatorName(String text, String creator) {
     return Padding(
@@ -189,47 +214,16 @@ class MusicalDetail extends GetView<DetailController> {
     );
   }
 
-  Widget _buyButton() {
-    return GestureDetector(
-      onTap: () {
-        print("결제결제");
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20),
-              topLeft: Radius.circular(20),
-              bottomLeft: Radius.circular(20),
-              bottomRight: Radius.circular(20)),
-          color: Colors.grey,
-        ),
-        width: Get.width * 0.8,
-        height: 80,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-                padding: EdgeInsets.only(right: 10),
-                child: Icon(
-                  Ionicons.ticket_outline,
-                  size: 30,
-                  color: Colors.white70,
-                )),
-            Container(
-              padding: EdgeInsets.only(left: 10),
-              child: Text(
-                "예매하기",
-                style: GoogleFonts.sunflower(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                    color: Colors.white70),
-              ),
-            )
-          ],
-        ),
-      ),
-    );
+  Widget _buyButton(
+    Function() ontap,
+    String text,
+  ) {
+    return TextButton(
+        onPressed: ontap,
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 18),
+        ));
   }
 
   @override
@@ -246,7 +240,15 @@ class MusicalDetail extends GetView<DetailController> {
                   _mainTitle(),
                   _line(),
                   _mainInfo(),
-                  _buyButton(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      _buyButton(() {}, "에매하기"),
+                      _buyButton(() {
+                        personController.addCart(controller.dbResult.value);
+                      }, "장바구니"),
+                    ],
+                  ),
                   _line(),
                   _mainDetailText(),
                   _line(),

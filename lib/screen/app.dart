@@ -23,7 +23,7 @@ class App extends GetView<AppController> {
             return Search();
             break;
           case RouteName.Library:
-            return Library();
+            return News();
             break;
           case RouteName.Person:
             return Person();

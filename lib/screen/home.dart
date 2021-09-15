@@ -22,21 +22,26 @@ class Home extends StatelessWidget {
     return Container(
       child: Obx(
         () => CarouselSlider.builder(
-          itemCount: controller.dbsListResult.value.db?.length ?? 0,
+          itemCount: controller.dbsAll.value.db?.length ?? 0,
           itemBuilder: (context, index, realIndex) {
-            return GestureDetector(
-              onTap: () {
-                Get.toNamed(
-                    "/MusicalDetail/${controller.dbsListResult.value.db![index].mt20id}");
-              },
-              child: Container(
-                width: Get.width,
-                child: Image.network(
-                    controller.dbsListResult.value.db?[index].poster == null
-                        ? muUrl
-                        : controller.dbsListResult.value.db![index].poster!),
-              ),
-            );
+            if (controller.dbsAll.value.db?[index].poster != null) {
+              return GestureDetector(
+                onTap: () {
+                  Get.toNamed(
+                      "/MusicalDetail/${controller.dbsAll.value.db![index].mt20id}");
+                },
+                child: Container(
+                  width: Get.width,
+                  child: Image.network(
+                      controller.dbsAll.value.db?[index].poster! ?? muUrl),
+                ),
+              );
+            } else {
+              return Center(
+                  child: CircularProgressIndicator(
+                color: Colors.yellow.shade700,
+              ));
+            }
           },
           options: CarouselOptions(
             height: 300,
@@ -180,7 +185,7 @@ class Home extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              _ListButton(() => {print("go Page event")}, "이벤트"),
+              _ListButton(() => {print("go Page event")}, "장르별 목록"),
               EventList(),
               KopisReader(),
             ],

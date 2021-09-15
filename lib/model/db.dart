@@ -57,3 +57,67 @@ class Db {
         "openrun": openrun,
       };
 }
+
+class Boxofs {
+  List<Boxof>? boxof;
+
+  Boxofs({this.boxof});
+
+  factory Boxofs.fromJson(Map<String, dynamic> json) => Boxofs(
+      boxof: List<Boxof>.from(json["boxof"].map((x) => Boxof.fromJson(x))));
+
+  Map<String, dynamic> toJson() => {
+        "boxof": List<dynamic>.from(boxof!.map((e) => e.toJson())),
+      };
+}
+
+class Boxof {
+  String? area;
+  String? prfdtcnt;
+  String? prfpd;
+  String? cate;
+  String? prfplcnm;
+  String? prfnm;
+  String? rnum;
+  String? seatcnt;
+  String? poster;
+  String? mt20id;
+
+  Boxof({
+    this.area,
+    this.prfdtcnt,
+    this.prfpd,
+    this.cate,
+    this.prfplcnm,
+    this.prfnm,
+    this.rnum,
+    this.seatcnt,
+    this.poster,
+    this.mt20id,
+  });
+
+  factory Boxof.fromJson(Map<String, dynamic> json) => Boxof(
+        area: json["area"],
+        prfdtcnt: json["prfdtcnt"],
+        prfpd: json["prfpd"],
+        cate: json["cate"],
+        prfplcnm: json["prfplcnm"],
+        prfnm: json["prfnm"],
+        rnum: json["rnum"],
+        seatcnt: json["seatcnt"],
+        poster: json["poster"],
+        mt20id: json["mt20id"],
+      );
+  Map<String, dynamic> toJson() => {
+        "area": area,
+        "prfdtcnt": prfdtcnt,
+        "prfpd": prfpd,
+        "cate": cate,
+        "prfplcnm": prfplcnm,
+        "prfnm": prfnm,
+        "rnum": rnum,
+        "seatcnt": seatcnt,
+        "poster": poster,
+        "mt20id": mt20id,
+      };
+}

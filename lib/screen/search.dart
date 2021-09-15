@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
-import 'package:musical_app/components/musical_widget.dart';
 import 'package:musical_app/components/search_result.dart';
 import 'package:musical_app/controller/search_controller.dart';
 
@@ -46,8 +45,14 @@ class Search extends GetView<SearchController> {
             // child: HomeRecommandList(
             //   db: controller.dbsresult.value.db![index],
             // ),
-            child: SearchResultPage(
-              db: controller.dbsresult.value.db![index],
+            child: Card(
+              margin: EdgeInsets.only(left: 10,top: 5,bottom:5,right: 10),
+              elevation: 5,
+              semanticContainer: true,
+              shadowColor: Colors.grey.withOpacity(0.5),
+              child: SearchResultPage(
+                db: controller.dbsresult.value.db![index],
+              ),
             ),
           );
         }),

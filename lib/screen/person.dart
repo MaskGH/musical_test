@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ionicons/ionicons.dart';
 import 'package:musical_app/components/musical_detail.dart';
-import 'package:musical_app/controller/home_controller.dart';
+import 'package:musical_app/controller/person_controlller.dart';
 
 class Person extends StatelessWidget {
-  Person({Key? key}) : super(key: key);
-  HomeController homeController = Get.put(HomeController());
+  Person({
+    Key? key,
+  }) : super(key: key);
+  final PersonController personController = Get.find();
 
   final _auth = FirebaseAuth.instance;
 
@@ -134,7 +136,7 @@ class Person extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
                         onTap: () {},
-                        child: Container(
+                        child: Container(                          
                           width: Get.width,
                           height: 100,
                           child: Row(
@@ -143,7 +145,7 @@ class Person extends StatelessWidget {
                                 width: Get.width * 0.3,
                                 height: 100,
                                 child: Image.network(
-                                  muUrl,
+                                  personController.list[index].poster ?? muUrl,
                                   fit: BoxFit.cover,
                                 ),
                               ),
@@ -155,7 +157,8 @@ class Person extends StatelessWidget {
                                       CrossAxisAlignment.stretch,
                                   children: [
                                     Text(
-                                      "제목 정보 없음",
+                                      personController.list[index].prfnm ??
+                                          "제목 정보 없음",
                                       maxLines: 3,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
@@ -163,12 +166,15 @@ class Person extends StatelessWidget {
                                     ),
                                     Row(
                                       children: [
-                                        Text("날짜 정보 없음"),
+                                        Text(personController
+                                                .list[index].prfpdto ??
+                                            "날짜 정보 없음"),
                                         Text(" 까지"),
                                       ],
                                     ),
                                     Text(
-                                      "장소 정보 없음",
+                                      personController.list[index].fcltynm ??
+                                          "장소 정보 없음",
                                       maxLines: 2,
                                     ),
                                   ],
@@ -180,7 +186,7 @@ class Person extends StatelessWidget {
                       ),
                     );
                   },
-                  itemCount: 5,
+                  itemCount: personController.list.length,
                 ),
               ],
             ),
